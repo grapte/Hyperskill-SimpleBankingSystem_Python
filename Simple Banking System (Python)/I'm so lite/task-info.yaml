@@ -1,0 +1,35 @@
+type: edu
+files:
+  - name: banking/banking.py
+    visible: true
+    learner_created: false
+  - name: test/__init__.py
+    visible: false
+    learner_created: false
+  - name: test/tests.py
+    visible: false
+    learner_created: false
+  - name: tests.py
+    visible: false
+    learner_created: false
+  - name: banking/banking.s3db
+    visible: true
+    is_binary: true
+    learner_created: true
+  - name: banking.s3db
+    visible: true
+    is_binary: true
+    learner_created: true
+  - name: banking/card.s3db
+    visible: true
+    learner_created: true
+  - name: card.s3db
+    visible: true
+    is_binary: true
+    learner_created: true
+feedback_link: https://hyperskill.org/learn/step/9829#comment
+status: Solved
+feedback:
+  message: Congratulations!
+  time: "Wed, 16 Oct 2024 06:48:31 UTC"
+record: 3

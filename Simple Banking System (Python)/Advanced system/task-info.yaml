@@ -1,0 +1,24 @@
+type: edu
+files:
+  - name: banking/banking.py
+    visible: true
+    learner_created: false
+  - name: test/__init__.py
+    visible: false
+    learner_created: false
+  - name: test/tests.py
+    visible: false
+    learner_created: false
+  - name: tests.py
+    visible: false
+    learner_created: false
+  - name: card.s3db
+    visible: true
+    is_binary: true
+    learner_created: true
+feedback_link: https://hyperskill.org/learn/step/9830#comment
+status: Failed
+feedback:
+  message: "Exception in test #1"
+  time: "Thu, 24 Oct 2024 04:17:24 UTC"
+record: 4
