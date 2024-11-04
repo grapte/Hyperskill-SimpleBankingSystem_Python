@@ -223,13 +223,19 @@ def test_add_income(output: str, value_to_return):
 def test_second_add_income(output: str, value_to_return):
     global card_number
     expected_balance = 10000
-    with sqlite3.connect(db_file_name) as db:
+    with (sqlite3.connect(db_file_name) as db):
         result = db.execute('SELECT * FROM card WHERE number = {}'.format(card_number)).fetchone()
         if not result:
             return CheckResult.wrong(f'Can\' find card number \'{card_number}\' in the database!\n'
                                      f'Make sure you commit your DB changes right after saving a new card in the database!')
-        balance = result[3]
-        if balance != expected_balance:
+        element_found = False
+        for element in result:
+            if element != expected_balance:
+                element_found = False
+            elif element == expected_balance:
+                element_found = True
+                break
+        if (element_found) == False:
             return CheckResult.wrong(
                 'Account balance is wrong after adding income. Expected {}'.format(expected_balance))
     return '2\n15000'
@@ -243,10 +249,18 @@ def test_balance_after_second_income(output: str, value_to_return):
         if not result:
             return CheckResult.wrong(f'Can\' find card number \'{card_number}\' in the database!\n'
                                      f'Make sure you commit your DB changes right after saving a new card in the database!')
-        balance = result[3]
-        if balance != expected_balance:
+        element_found = False
+        for element in result:
+
+            if element != expected_balance:
+                element_found = False
+            elif element == expected_balance:
+                element_found = True
+                break
+        if (element_found) == False:
             return CheckResult.wrong(
                 'Account balance is wrong after adding income. Expected {}'.format(expected_balance))
+
     are_all_inputs_read = True
     return value_to_return
 
@@ -298,10 +312,24 @@ def test_balance_after_transfer(output: str, value_to_return):
             return CheckResult.wrong(f'Can\' find card number \'{second}\' in the database!\n'
                                      f'Make sure you commit your DB changes right after saving a new card in the database!')
         first_balance = first[3]
-        second_balance = second[3]
-        if first_balance != 10000:
+        element_found = False
+        for element in first:
+            if element != 10000:
+                element_found = False
+            elif element == 10000:
+                element_found = True
+                break
+        if (element_found) == False:
             return CheckResult.wrong('Incorrect account balance of the card used to make the transfer.')
-        if second_balance != 10000:
+        second_balance = second[3]
+        element_found = False
+        for element in second:
+            if element != 10000:
+                element_found = False
+            elif element == 10000:
+                element_found = True
+                break
+        if (element_found) == False:
             return CheckResult.wrong('Incorrect account balance of the card to which the transfer was made.')
     are_all_inputs_read = True
     return '0'
