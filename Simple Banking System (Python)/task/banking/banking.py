@@ -102,7 +102,7 @@ def account_operation(a: Account):
 
                         print('Such a card does not exist.')
             case 4:
-                cx.execute('DELETE * FROM card WHERE number = ?', (a.no,))
+                cx.execute('DELETE FROM card WHERE number = ?', (a.no,))
                 print('The account has been closed!')
                 break
             case 5:
@@ -122,8 +122,7 @@ def exit_program():
 db_file = 'card.s3db'
 cx = sqlite3.connect(db_file, detect_types=sqlite3.PARSE_DECLTYPES)
 cx.autocommit = True
-# Unable to pass test #8 in part 4/4
-# Found in unit test that the check code has hard coded the field orders, but wasn't specified in Description.
+# now code passed test #8
 cx.execute('CREATE TABLE IF NOT EXISTS card(id INTEGER, number TEXT, balance INTEGER DEFAULT 0, pin TEXT)')
 
 while True:
